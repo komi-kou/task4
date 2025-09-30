@@ -8,6 +8,16 @@ const nextConfig = {
   // Render用の設定
   experimental: {
     serverComponentsExternalPackages: ['@prisma/client']
+  },
+  
+  // NextAuthのパスをリライト
+  async rewrites() {
+    return [
+      {
+        source: '/api/auth/:path*',
+        destination: '/api/auth/nextauth/:path*',
+      },
+    ]
   }
 };
 
