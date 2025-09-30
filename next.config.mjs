@@ -10,8 +10,15 @@ const nextConfig = {
     serverComponentsExternalPackages: ['@prisma/client']
   },
   
-  // NextAuthのパスをリライト（不要なので削除）
-  // rewrites機能は使用しない
+  // NextAuthのパスをリライト
+  async rewrites() {
+    return [
+      {
+        source: '/api/auth/:path*',
+        destination: '/api/auth/nextauth/:path*',
+      },
+    ]
+  }
 };
 
 export default nextConfig;
